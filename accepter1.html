@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    
+
+<head>
+        <meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+                var url_string = window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("id");
+
+
+
+var url = "http://127.0.0.1:3000/covs/" + c ;
+       
+    
+    var data = {};
+    data.etat = "accepter";
+
+    var json = JSON.stringify(data);
+    console.log(json);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+    xhr.onload = function () {
+        var users = JSON.parse(xhr.responseText);
+        if (xhr.readyState == 4 && xhr.status == "201") {
+            console.table(users);
+    
+        } else {
+          
+            location.replace("profilerental.html");
+        }
+    }
+    xhr.send(json);
+    
+</script>
+
+</body>
+
+</html>
