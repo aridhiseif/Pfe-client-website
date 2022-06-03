@@ -37,7 +37,7 @@
       id="ftco-navbar"
     >
       <div class="container">
-        <a class="navbar-brand" href="index.html"><span>Tuber</span></a>
+        <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -52,7 +52,7 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a href="index.html" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
@@ -62,19 +62,16 @@
               <a href="services.html" class="nav-link">Services</a>
             </li>
             <li class="nav-item">
-              <a href="pricing.html" class="nav-link">Covoiturage</a>
+              <a href="pricing.html" class="nav-link">Pricing</a>
             </li>
             <li class="nav-item">
-              <a href="car.html" class="nav-link">Location</a>
+              <a href="car.html" class="nav-link">Cars</a>
             </li>
             <li class="nav-item">
               <a href="blog.html" class="nav-link">Blog</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a href="contact.html" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a id="ll" href="login.html" class="nav-link">Login</a>
             </li>
           </ul>
         </div>
@@ -98,34 +95,79 @@
                 ><a href="index.html"
                   >Home <i class="ion-ios-arrow-forward"></i></a
               ></span>
-              <span>covoiturage <i class="ion-ios-arrow-forward"></i></span>
+              <span>Register <i class="ion-ios-arrow-forward"></i></span>
             </p>
-            <h1 class="mb-3 bread">les voyages</h1>
+            <h1 class="mb-3 bread">Register</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ftco-section ftco-cart">
+    <section class="ftco-section contact-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12 ftco-animate">
-            <div class="car-list">
-              <table class="table">
-                <thead class="thead-primary">
-                  <tr class="text-center">
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                    <th class="bg-primary heading">start</th>
-                    <th class="bg-dark heading">destination</th>
-                    <th class="bg-black heading">voiture</th>
-                    <th class="bg-black heading">date</th>
-                    <th class="bg-black heading">prix</th>
-                  </tr>
-                </thead>
-                <tbody id="listcar"></tbody>
-              </table>
-            </div>
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-12 block-12 mb-md-5">
+            <form onsubmit="return false;" class="bg-light p-5 contact-form">
+              <div class="form-group">
+                <input
+                  id="firstname"
+                  type="text"
+                  class="form-control"
+                  placeholder="nom"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  id="lastname"
+                  type="text"
+                  class="form-control"
+                  placeholder="prénom"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="mot de passe"
+                />
+              </div>
+
+              <div class="form-group">
+                <select
+                  id="type"
+                  class="form-control"
+                  onchange="changePage(this.selectedIndex)"
+                >
+                  <option value="client">Client</option>
+                  <option selected value="conducteur">Conducteur</option>
+                </select>
+              </div>
+
+              <center>
+                <div class="form-group">
+                  <input
+                    onclick="register();"
+                    type="button"
+                    value="Register"
+                    class="btn btn-primary py-3 px-5"
+                  />
+                </div>
+                or
+                <a href="login.html"> your have account</a>
+              </center>
+            </form>
           </div>
         </div>
       </div>
@@ -277,130 +319,30 @@
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
+
     <script src="js/main.js"></script>
 
-    <script type="text/javascript">
-      // Create a request variable and assign a new XMLHttpRequest object to it.
-      var request = new XMLHttpRequest();
-
-      // Open a new connection, using the GET request on the URL endpoint
-      request.open("GET", "http://127.0.0.1:3000/voyages", true);
-
-      request.onload = function () {
-        // Begin accessing JSON data here
-
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
-        //var list = document.getElementById('listpatient');
-        var table = document.getElementById("listcar");
-
-        console.log(data);
-        var j = 1;
-        data.forEach((i) => {
-          ch =
-            `
-    
-
-						  
-
-                  <tr class="">
-                    <td class="car-image"><div class="img" style="background-image:url(` +
-            i.image +
-            `);"></div></td>
-                    <td class="product-name">
-                      <h3>` +
-            i.start +
-            `</h3>
-                      <p class="mb-0 rated">
-                    
-                      </p>
-                    </td>
-                    
-                    <td class=>
-                    
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small> nb place : ` +
-            i.destination +
-            `
-               </span>
-                          <span class="per"></span>
-                        </h3>
-                        <span class="subheading"> baquage : ` +
-            i.prix +
-            `</span>
-                      </div>
-                    </td>
-                    
-                    <td >
-                      
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small>` +
-            i.depart +
-            `</span>
-                          <span class="per">/` +
-            i.fin +
-            `</span>
-                        </h3>
-                        <span class="subheading">` +
-            i.datec +
-            `</span>
-                      </div>
-                    </td>
-
-                    <td class="price">
-                      <p class="btn-custom"><a onclick="book('` +
-            i._id +
-            `');">Rent a car</a></p>
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small> ` +
-            i.prixvoyage +
-            `</span>
-                          <span class="per">/per place</span>
-                        </h3>
-                 
-                      </div>
-                    </td>
-                  </tr><!-- END TR-->
-   
-    
-            `;
-          table.insertAdjacentHTML("beforeend", ch);
-
-          /*
-   
-    
-    cell4.innerHTML = i.datedepart;
-    cell5.innerHTML = i.datefin ;
-        cell6.innerHTML = i.prix ;
-            cell7.innerHTML = i.direction ;
-                cell8.innerHTML = i.planing ;
-                  cell9.innerHTML = i.agence ;
-    cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimeroffre.html?id="+i._id+" style='color:white'> Detele </a> </button>";
-    j = j + 1 ;
-     
-    */
-        });
-      };
-
-      // Send request
-      request.send();
+    <script>
+      function changePage(index) {
+        if (index == 0) {
+          location.replace("register.html");
+        } else if (index == 1) {
+          location.replace("registerConducteur.html");
+        }
+      }
     </script>
 
-    <script type="text/javascript">
-      function book(id) {
-        var url = "http://127.0.0.1:3000/covs";
+    <script>
+      function loginclient() {
+        // Post a user
+        var url = "http://127.0.0.1:3000/clients";
 
         var data = {};
+        data.firstname = document.getElementById("firstname").value;
+        data.lastname = document.getElementById("lastname").value;
 
-        data.name = localStorage.getItem("nomclient");
-
-        data.idclient = localStorage.getItem("idclient");
-        data.idoffre = id;
-        data.etat = "enattend";
+        data.email = document.getElementById("email").value;
+        data.password = document.getElementById("password").value;
 
         var json = JSON.stringify(data);
         console.log(json);
@@ -411,29 +353,53 @@
         xhr.onload = function () {
           var users = JSON.parse(xhr.responseText);
           if (xhr.readyState == 4 && xhr.status == "200") {
-            alert("Reservation Valider!");
-            location.replace("profile.html");
+            alert("welcome member");
+            location.replace("login.html");
           } else {
-            console.log(users);
+            alert(users.message);
           }
         };
         xhr.send(json);
       }
-    </script>
 
-    <script type="text/javascript">
-      var ll = document.getElementById("ll");
-      if (localStorage.getItem("idclient") != null) {
-        ll.href = "profile.html";
-        ll.innerHTML = "profile";
+      function loginConducteur() {
+        // Post a user
+        var url = "http://127.0.0.1:3000/conducteurs";
+
+        var data = {};
+        data.firstname = document.getElementById("firstname").value;
+        data.lastname = document.getElementById("lastname").value;
+
+        data.email = document.getElementById("email").value;
+        data.password = document.getElementById("password").value;
+        data.tel = document.getElementById("phone").value;
+
+        var json = JSON.stringify(data);
+        console.log(json);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.onload = function () {
+          var users = JSON.parse(xhr.responseText);
+          if (xhr.readyState == 4 && xhr.status == "200") {
+            alert("welcome member");
+            location.replace("login.html");
+          } else {
+            alert(users.message);
+          }
+        };
+        xhr.send(json);
       }
-    </script>
 
-    <script type="text/javascript">
-      var ll = document.getElementById("ll");
-      if (localStorage.getItem("idrental") != null) {
-        ll.href = "profilerental.html";
-        ll.innerHTML = "profile";
+      function register() {
+        var t = document.getElementById("type").value;
+
+        if (t == "Client") {
+          loginclient();
+        } else {
+          loginConducteur();
+        }
       }
     </script>
   </body>
