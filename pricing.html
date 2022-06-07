@@ -37,7 +37,7 @@
       id="ftco-navbar"
     >
       <div class="container">
-        <a class="navbar-brand" href="index.html"><span>Tuber</span></a>
+        <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -98,9 +98,9 @@
                 ><a href="index.html"
                   >Home <i class="ion-ios-arrow-forward"></i></a
               ></span>
-              <span>covoiturage <i class="ion-ios-arrow-forward"></i></span>
+              <span>Pricing <i class="ion-ios-arrow-forward"></i></span>
             </p>
-            <h1 class="mb-3 bread">les voyages</h1>
+            <h1 class="mb-3 bread">Pricing</h1>
           </div>
         </div>
       </div>
@@ -116,11 +116,9 @@
                   <tr class="text-center">
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
-                    <th class="bg-primary heading">start</th>
-                    <th class="bg-dark heading">destination</th>
-                    <th class="bg-black heading">voiture</th>
-                    <th class="bg-black heading">date</th>
-                    <th class="bg-black heading">prix</th>
+                    <th class="bg-primary heading">Nb de place</th>
+                    <th class="bg-dark heading">Date/Time</th>
+                    <th class="bg-black heading">Reserver</th>
                   </tr>
                 </thead>
                 <tbody id="listcar"></tbody>
@@ -300,89 +298,93 @@
         data.forEach((i) => {
           ch =
             `
-    
 
-						  
 
-                  <tr class="">
-                    <td class="car-image"><div class="img" style="background-image:url(` +
-            i.image +
-            `);"></div></td>
-                    <td class="product-name">
-                      <h3>` +
+
+
+                    <tr class="">
+                      <td class="">  ` +
             i.start +
-            `</h3>
-                      <p class="mb-0 rated">
-                    
-                      </p>
-                    </td>
-                    
-                    <td class=>
-                    
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small> nb place : ` +
+            ` -  ` +
             i.destination +
+            `  </td>
+                      <td class="product-name">
+                        <h3>` +
+            i.nom +
+            `</h3>
+                        <p class="mb-0 rated">
+
+                        </p>
+                      </td>
+
+                      <td class=>
+
+                        <div class="price-rate">
+                          <h3>
+                            <span class="num"><small class="currency"></small> nb place : ` +
+            i.nbdeplace +
             `
-               </span>
-                          <span class="per"></span>
-                        </h3>
-                        <span class="subheading"> baquage : ` +
-            i.prix +
+                 </span>
+                            <span class="per"></span>
+                          </h3>
+                          <span class="subheading"> baquage : ` +
+            i.bags +
             `</span>
-                      </div>
-                    </td>
-                    
-                    <td >
-                      
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small>` +
+                        </div>
+                      </td>
+
+                      <td >
+
+                        <div class="price-rate">
+                          <h3>
+                            <span class="num"><small class="currency"></small>` +
             i.depart +
             `</span>
-                          <span class="per">/` +
+                            <span class="per">/` +
             i.fin +
             `</span>
-                        </h3>
-                        <span class="subheading">` +
+                          </h3>
+                          <span class="subheading">` +
             i.datec +
             `</span>
-                      </div>
-                    </td>
+                        </div>
+                      </td>
 
-                    <td class="price">
-                      <p class="btn-custom"><a onclick="book('` +
+                      <td class="price">
+                        <p class="btn-custom"><a onclick="book('` +
             i._id +
+            ` ',   '` +
+            i.conducteurId +
             `');">Rent a car</a></p>
-                      <div class="price-rate">
-                        <h3>
-                          <span class="num"><small class="currency"></small> ` +
+                        <div class="price-rate">
+                          <h3>
+                            <span class="num"><small class="currency"></small> ` +
             i.prixvoyage +
             `</span>
-                          <span class="per">/per place</span>
-                        </h3>
-                 
-                      </div>
-                    </td>
-                  </tr><!-- END TR-->
-   
-    
-            `;
+                            <span class="per">/per place</span>
+                          </h3>
+
+                        </div>
+                      </td>
+                    </tr><!-- END TR-->
+
+
+              `;
           table.insertAdjacentHTML("beforeend", ch);
 
           /*
-   
-    
-    cell4.innerHTML = i.datedepart;
-    cell5.innerHTML = i.datefin ;
-        cell6.innerHTML = i.prix ;
-            cell7.innerHTML = i.direction ;
-                cell8.innerHTML = i.planing ;
-                  cell9.innerHTML = i.agence ;
-    cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimeroffre.html?id="+i._id+" style='color:white'> Detele </a> </button>";
-    j = j + 1 ;
-     
-    */
+
+
+      cell4.innerHTML = i.datedepart;
+      cell5.innerHTML = i.datefin ;
+          cell6.innerHTML = i.prix ;
+              cell7.innerHTML = i.direction ;
+                  cell8.innerHTML = i.planing ;
+                    cell9.innerHTML = i.agence ;
+      cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimeroffre.html?id="+i._id+" style='color:white'> Detele </a> </button>";
+      j = j + 1 ;
+
+      */
         });
       };
 
@@ -391,15 +393,16 @@
     </script>
 
     <script type="text/javascript">
-      function book(id) {
+      function book(id, id2) {
         var url = "http://127.0.0.1:3000/covs";
 
         var data = {};
 
         data.name = localStorage.getItem("nomclient");
 
-        data.idclient = localStorage.getItem("idclient");
-        data.idoffre = id;
+        data.clientId = localStorage.getItem("idclient");
+        data.voyageId = id;
+        data.conducteurId = id2;
         data.etat = "enattend";
 
         var json = JSON.stringify(data);

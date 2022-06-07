@@ -442,7 +442,7 @@ if(id == i._id && i.iduser == localStorage.getItem("idrental") ){
     var request = new XMLHttpRequest()
     
     // Open a new connection, using the GET request on the URL endpoint
-    request.open('GET', 'http://127.0.0.1:3000/reservations', true)
+    request.open('GET', 'http://127.0.0.1:3000/covs', true)
     
     request.onload = function() {
     // Begin accessing JSON data here
@@ -457,7 +457,7 @@ if(id == i._id && i.iduser == localStorage.getItem("idrental") ){
     data.forEach(i => {
     
  
-    if (verif2(i._id) == true ) {
+    if ( i.conducteurId == localStorage.getItem("idrental")) {
     
     
     var row = table.insertRow(-1);
@@ -489,7 +489,7 @@ if (i.etat == "enattend"){
   cell9.innerHTML = "<button style='background-color : orange'> A </button>"
 }
 if (i.etat == "accepter"){
-  cell9.innerHTML = "<button style='background-color : green'> A </button>"
+  cell9.innerHTML = "<button style='background-color : green'> AC </button>"
 }
 
 if (i.etat == "refuser"){
