@@ -1,5 +1,5 @@
 <script>
-  if (!localStorage.getItem("idrental") || !localStorage.getItem("idclient"))
+  if (!localStorage.getItem("idrental") && !localStorage.getItem("idclient"))
     location.replace("login.html");
 </script>
 <!DOCTYPE html>
@@ -115,6 +115,7 @@
         <div class="row d-flex mb-5 contact-info">
           <div class="col-md-4">
             <div class="row mb-5">
+              <!---->
               <div class="col-md-12">
                 <div class="border w-100 p-4 rounded mb-2 d-flex">
                   <div class="icon mr-3">
@@ -126,6 +127,7 @@
                   </p>
                 </div>
               </div>
+
               <div class="col-md-12">
                 <div class="border w-100 p-4 rounded mb-2 d-flex">
                   <div class="icon mr-3">
@@ -148,6 +150,7 @@
                   </p>
                 </div>
               </div>
+              <!---->
             </div>
           </div>
           <div class="col-md-8 block-9 mb-md-5">

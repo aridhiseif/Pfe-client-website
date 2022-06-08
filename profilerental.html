@@ -1,7 +1,7 @@
 <script>
-  if(!localStorage.getItem("idrental")||! localStorage.getItem("idclient"))
+  if (!localStorage.getItem("idrental") && !localStorage.getItem("idclient"))
     location.replace("login.html");
-  
+</script>
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -323,10 +323,10 @@ var url = "http://127.0.0.1:3000/conducteurs/" + c ;
     var data = JSON.parse(this.response)
     console.log(data);
 
-    document.getElementById("firstname").innerHTML = "<span >firstname:</span>" + data.firstname;
-    document.getElementById("lastname").innerHTML = "<span >lastname:</span>" + data.lastname;
-    document.getElementById("email").innerHTML =  "<span >Email:</span>" + data.email;
-    document.getElementById("phone").innerHTML =  "<span >Phone:</span>" + data.tel;
+    document.getElementById("firstname").innerHTML = "<span >firstname:</span>" + localStorage.getItem("firstname");
+    document.getElementById("lastname").innerHTML = "<span >lastname:</span>" +localStorage.getItem("lastname");
+    document.getElementById("email").innerHTML =  "<span >Email:</span>" + localStorage.getItem("email");
+    document.getElementById("phone").innerHTML =  "<span >Phone:</span>" + localStorage.getItem("tel");
     document.getElementById("password").innerHTML =  "<span >Password:</span>" + data.password;
  // document.getElementById("address").innerHTML =  "<span >Adresse:</span>" + data.address;
     

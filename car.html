@@ -1,5 +1,5 @@
 <script>
-  if (!localStorage.getItem("idrental") || !localStorage.getItem("idclient"))
+  if (!localStorage.getItem("idrental") && !localStorage.getItem("idclient"))
     location.replace("login.html");
 </script>
 <!DOCTYPE html>
