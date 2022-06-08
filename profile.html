@@ -1,3 +1,8 @@
+<script>
+  if(!localStorage.getItem("idrental")||! localStorage.getItem("idclient"))
+    location.replace("login.html");
+  
+</script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,7 +80,16 @@
                   <div class="icon mr-3">
                     <span class="icon-user-o"></span>
                   </div>
-                  <p id="username"><span>Username:</span> Ali </p>
+                  <p id="firstname"><span>nom:</span> Ali </p>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-user-o"></span>
+                  </div>
+                  <p id="lastname"><span>prénom:</span> Ali </p>
                 </div>
               </div>
 
@@ -321,11 +335,12 @@ var url = "http://127.0.0.1:3000/clients/" + c ;
     var data = JSON.parse(this.response)
     console.log(data);
 
-    document.getElementById("username").innerHTML = "<span >Username:</span>" + data.username;
+    document.getElementById("firstname").innerHTML = "<span >Username:</span>" + data.firstname;
+    document.getElementById("lastname").innerHTML = "<span >Username:</span>" + data.lastname;
     document.getElementById("password").innerHTML =  "<span >Password:</span>" + data.password;
     document.getElementById("email").innerHTML =  "<span >Email:</span>" + data.email;
-    document.getElementById("phone").innerHTML =  "<span >Phone:</span>" + data.phone;
-  document.getElementById("address").innerHTML =  "<span >Adresse:</span>" + data.address;
+   // document.getElementById("phone").innerHTML =  "<span >Phone:</span>" + data.phone;
+ // document.getElementById("address").innerHTML =  "<span >Adresse:</span>" + data.address;
     
     
     }
@@ -345,8 +360,8 @@ function deconnection(){
 
 var t  = confirm("voulez vous deconnecté ? ");
 if (t == true ){
-localStorage.removeItem("idclient");
-location.replace("index.html");
+localStorage.clear();
+location.replace("login.html");
 }
 
 }

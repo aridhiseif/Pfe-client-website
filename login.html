@@ -305,12 +305,17 @@
           "application/json; charset=utf-8"
         );
         xhr1.onload = function () {
-          var admins = JSON.parse(xhr1.responseText);
+          var clients = JSON.parse(xhr1.responseText);
           if (xhr1.readyState == 4 && xhr1.status == "200") {
-            for (i = 0; i < admins.length; i++) {
-              if (admins[i].email == email && admins[i].password == password) {
-                localStorage.setItem("idclient", admins[i]._id);
-                localStorage.setItem("nomclient", admins[i].email);
+            for (i = 0; i < clients.length; i++) {
+              if (
+                clients[i].email == email &&
+                clients[i].password == password
+              ) {
+                localStorage.setItem("idclient", clients[i]._id);
+                localStorage.setItem("email", clients[i].email);
+                localStorage.setItem("firstname", clients[i].firstname);
+                localStorage.setItem("lastname", clients[i].lastname);
 
                 access = true;
                 location.replace("index.html");
@@ -336,12 +341,17 @@
           "application/json; charset=utf-8"
         );
         xhr1.onload = function () {
-          var admins = JSON.parse(xhr1.responseText);
+          var conducteurs = JSON.parse(xhr1.responseText);
           if (xhr1.readyState == 4 && xhr1.status == "200") {
-            for (i = 0; i < admins.length; i++) {
-              if (admins[i].email == email && admins[i].password == password) {
-                localStorage.setItem("idrental", admins[i]._id);
-                localStorage.setItem("nomrental", admins[i].email);
+            for (i = 0; i < conducteurs.length; i++) {
+              if (
+                conducteurs[i].email == email &&
+                conducteurs[i].password == password
+              ) {
+                localStorage.setItem("idrental", conducteurs[i]._id);
+                localStorage.setItem("tel", conducteurs[i].tel);
+                localStorage.setItem("firstname", conducteurs[i].firstname);
+                localStorage.setItem("lastname", conducteurs[i].lastname);
 
                 access = true;
                 location.replace("indexrental.html");

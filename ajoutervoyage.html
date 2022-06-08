@@ -1,3 +1,7 @@
+<script>
+  if (!localStorage.getItem("idrental") || !localStorage.getItem("idclient"))
+    location.replace("login.html");
+</script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,9 +64,6 @@
             </li>
             <li class="nav-item">
               <a href="ajoutervoyage.html" class="nav-link">Ajouter Voyage</a>
-            </li>
-            <li class="nav-item">
-              <a href="ajoutervoiture.html" class="nav-link">Ajouter Voiture</a>
             </li>
 
             <li class="nav-item">
