@@ -144,13 +144,10 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nom</th>
-      <th scope="col">Id Voiture</th>
-      <th scope="col">Date debut</th>
-      <th scope="col">Date fin</th>
-      <th scope="col">Heure livraison</th>
-      
-      <th scope="col">Adresse debut</th>
-      <th scope="col">Date Reservation</th>
+      <th scope="col">prénom</th>
+      <th scope="col">email</th>
+      <th scope="col"> client ID</th>
+
       <th scope="col">Etat</th>
       <th scope="col">Action</th>
     </tr>
@@ -235,7 +232,10 @@
                 <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
                 <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
               </ul>
-            </div>
+            </div>      <th scope="col">Heure livraison</th>
+      
+            <th scope="col">Adresse debut</th>
+            <th scope="col">Date Reservation</th>
           </div>
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
@@ -476,36 +476,32 @@ if(id == i._id && i.iduser == localStorage.getItem("idrental") ){
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
-    var cell9 = row.insertCell(8);
-    var cell10 = row.insertCell(9);
+
 
     
     
     
     cell1.innerHTML = j ;  
-    cell2.innerHTML = i.name;
-    cell3.innerHTML = i.idcar;
-    cell4.innerHTML = i.dated;
-    cell5.innerHTML = i.datef ;
-        cell6.innerHTML = i.heure ;
-            cell7.innerHTML = i.address ;
-                cell8.innerHTML = i.createdAt ;
+    cell2.innerHTML = i.firstname;
+    cell3.innerHTML = i.lastname;
+    cell4.innerHTML = i.email;
+    cell5.innerHTML = i.clientId ;
+
 
 
 if (i.etat == "enattend"){
-  cell9.innerHTML = "<button style='background-color : orange'> A </button>"
+  cell6.innerHTML = "<button style='background-color : orange'> A </button>"
 }
 if (i.etat == "accepter"){
-  cell9.innerHTML = "<button style='background-color : green'> AC </button>"
+  cell6.innerHTML = "<button style='background-color : green'> AC </button>"
 }
 
 if (i.etat == "refuser"){
-  cell9.innerHTML = "<button style='background-color : red'> R </button>"
+  cell6.innerHTML = "<button style='background-color : red'> R </button>"
 }
 
 
-    cell10.innerHTML = "<button class='btn btn-success'> <a href=accepter.html?id="+i._id+" style='color:white'> A </a> </button> <button class='btn btn-danger'> <a href=refuser.html?id="+i._id+" style='color:white'> R </a> </button>";
+    cell7.innerHTML = "<button class='btn btn-success'> <a href=accepter.html?id="+i._id+" style='color:white'> A </a> </button> <button class='btn btn-danger'> <a href=refuser.html?id="+i._id+" style='color:white'> R </a> </button>";
     j = j + 1 ;
      
     }
@@ -590,7 +586,7 @@ var h = "dd";
     var request = new XMLHttpRequest()
     
     // Open a new connection, using the GET request on the URL endpoint
-    request.open('GET', 'http://127.0.0.1:3000/covs', true)
+    request.open('GET', 'http://127.0.0.1:3000/voyages', true)
     
     request.onload = function() {
     // Begin accessing JSON data here

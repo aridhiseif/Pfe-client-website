@@ -406,8 +406,9 @@
 
         var data = {};
 
-        data.name = localStorage.getItem("nomclient");
-
+        data.firstname = localStorage.getItem("firstname");
+        data.lastname = localStorage.getItem("lastname");
+        data.email = localStorage.getItem("email");
         data.clientId = localStorage.getItem("idclient");
         data.voyageId = id;
         data.conducteurId = id2;
