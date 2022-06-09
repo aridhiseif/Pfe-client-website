@@ -194,7 +194,7 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
- <tbody>
+ <tbody >
    
 
  </tbody>
@@ -470,7 +470,7 @@ if (i.etat == "refuser"){
 }
 
 
-    cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> Detele </a> </button>";
+    cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> delete </a> </button>";
     j = j + 1 ;
      
     }
@@ -545,7 +545,8 @@ if (i.etat == "refuser"){
   cell4.innerHTML = "<button style='background-color : red'> R </button>"
 }
 
-cell5.innerHTML = "<button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> Detele </a> </button>";
+cell5.innerHTML = "<div class='d-flex justify-content-between' ><button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> Delete </a> </button>"+
+"<button class='btn btn-warning'> <a href=contact.html?id="+i._id+" style='color:white'> Rapport </a> </button></div>";
     j = j + 1 ;
      
     }

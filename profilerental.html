@@ -323,8 +323,8 @@ var url = "http://127.0.0.1:3000/conducteurs/" + c ;
     var data = JSON.parse(this.response)
     console.log(data);
 
-    document.getElementById("firstname").innerHTML = "<span >firstname:</span>" + localStorage.getItem("firstname");
-    document.getElementById("lastname").innerHTML = "<span >lastname:</span>" +localStorage.getItem("lastname");
+    document.getElementById("firstname").innerHTML = "<span >nom:</span>" + localStorage.getItem("firstname");
+    document.getElementById("lastname").innerHTML = "<span >prénom:</span>" +localStorage.getItem("lastname");
     document.getElementById("email").innerHTML =  "<span >Email:</span>" + localStorage.getItem("email");
     document.getElementById("phone").innerHTML =  "<span >Phone:</span>" + localStorage.getItem("tel");
     document.getElementById("password").innerHTML =  "<span >Password:</span>" + data.password;

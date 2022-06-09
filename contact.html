@@ -157,22 +157,6 @@
             <form onsubmit="return false;" class="bg-light p-5 contact-form">
               <div class="form-group">
                 <input
-                  id="name"
-                  type="text"
-                  class="form-control"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  id="email"
-                  type="text"
-                  class="form-control"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div class="form-group">
-                <input
                   id="sujet"
                   type="text"
                   class="form-control"
@@ -361,13 +345,16 @@
       function send() {
         // Post a user
         var url = "http://127.0.0.1:3000/reclamations";
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
 
         var data = {};
-        data.name = document.getElementById("name").value;
-
-        data.email = document.getElementById("email").value;
+        //data.name = document.getElementById("name").value;
+        data.userId = localStorage.getItem("idclient");
+        data.voyageId = urlParams.get("id");
+        data.email = localStorage.getItem("email");
         data.sujet = document.getElementById("sujet").value;
-        data.msg = document.getElementById("msg").value;
+        data.reclamation = document.getElementById("msg").value;
 
         var json = JSON.stringify(data);
         console.log(json);
