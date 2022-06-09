@@ -149,7 +149,6 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nom</th>
       <th scope="col">Id Voiture</th>
       <th scope="col">Date debut</th>
       <th scope="col">Date fin</th>
@@ -187,7 +186,6 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nom</th>
       <th scope="col">Id offre</th>
 
       <th scope="col">Date Reservation</th>
@@ -524,32 +522,30 @@ var h = localStorage.getItem("idclient");
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-    var cell6 = row.insertCell(5);
 
     
     
     
     cell1.innerHTML = j ;  
-    cell2.innerHTML = i.name;
-    cell3.innerHTML = i.voyageId;
+    cell2.innerHTML = i.voyageId;
 
-                cell4.innerHTML = i.createdAt ;
+                cell3.innerHTML = i.createdAt ;
 
 
 
 
 if (i.etat == "enattend"){
-  cell5.innerHTML = "<button style='background-color : orange;'> A </button>"
+  cell4.innerHTML = "<button style='background-color : orange;'> A </button>"
 }
 if (i.etat == "accepter"){
-  cell5.innerHTML = "<button style='background-color : green'> A </button>"
+  cell4.innerHTML = "<button style='background-color : green'> A </button>"
 }
 
 if (i.etat == "refuser"){
-  cell5.innerHTML = "<button style='background-color : red'> R </button>"
+  cell4.innerHTML = "<button style='background-color : red'> R </button>"
 }
 
-    cell6.innerHTML = "<button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> Detele </a> </button>";
+cell5.innerHTML = "<button class='btn btn-danger'> <a href=supprimerreservation.html?id="+i._id+" style='color:white'> Detele </a> </button>";
     j = j + 1 ;
      
     }
