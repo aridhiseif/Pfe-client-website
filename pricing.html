@@ -361,7 +361,7 @@
                       <td class="price">
                         <p class="btn-custom"><a onclick="book('` +
             i._id +
-            ` ',   '` +
+            ` ','` +
             i.conducteurId +
             `');">Rent a car</a></p>
                         <div class="price-rate">
@@ -410,7 +410,7 @@
         data.lastname = localStorage.getItem("lastname");
         data.email = localStorage.getItem("email");
         data.clientId = localStorage.getItem("idclient");
-        data.voyageId = id;
+        data.voyageId = id.trim();
         data.conducteurId = id2;
         data.etat = "enattend";
 

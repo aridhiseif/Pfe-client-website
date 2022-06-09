@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var d = window.confirm("want to Delete");
+      if (d == true) {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("id");
+        console.log(c);
+        // Post a user
+        var vdata = [];
+        var url3 = "http://127.0.0.1:3000/covs";
+        var xhr3 = new XMLHttpRequest();
+        xhr3.open("get", url3, false);
+        xhr3.onload = function () {
+          console.log(`all the covs
+          ${this.response}`);
+          if (xhr3.readyState == 4 && xhr3.status == "200") {
+            var data = JSON.parse(this.response);
+            data.forEach((el) => {
+              if (el.voyageId == c) {
+                var obj = {
+                  clientId: el.clientId,
+                  conducteurId: el.conducteurId,
+                  createdAt: el.createdAt,
+                  email: el.email,
+                  etat: el.etat,
+                  firstname: el.firstname,
+                  lastname: el.lastname,
+                  updatedAt: el.updatedAt,
+                  voyageId: el.voyageId,
+                  _id: el._id,
+                };
+
+                vdata.push(el);
+              }
+            });
+            console.log(vdata);
+            vdata.forEach((el) => {
+              console.log("http://127.0.0.1:3000/covs" + el._id);
+              fetch("http://127.0.0.1:3000/covs/" + el._id, {
+                method: "DELETE",
+              })
+                .then((res) => res.text()) // or res.json()
+                .then((res) => console.log(res));
+            });
+
+            location.replace("profilerental.html");
+            event.preventDefault();
+          } else {
+            console.log("error");
+          }
+        };
+        xhr3.send(null);
+      } else {
+        //    location.replace("profilerental.html");
+      }
+    </script>
+  </body>
+</html>

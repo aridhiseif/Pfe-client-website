@@ -178,12 +178,12 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Id offre</th>
+      <th scope="col">Depart</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Date</th>
+      <th scope="col">Heure</th>
 
-      <th scope="col">Date Reservation</th>
-            <th scope="col">Etat</th>
-
+     
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -601,7 +601,7 @@ var h = "dd";
     data.forEach(i => {
     
  
-    if (verif(i.idoffre) == true ) {
+    if (i.conducteurId == localStorage.getItem("idrental") ) {
     
     
     var row = table.insertRow(-1);
@@ -612,30 +612,21 @@ var h = "dd";
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
 
+
     
     
     
     cell1.innerHTML = j ;  
-    cell2.innerHTML = i.name;
-    cell3.innerHTML = i.idoffre;
+    cell2.innerHTML = i.depart;
+    cell3.innerHTML = i.fin;
 
-                cell4.innerHTML = i.createdAt ;
+                cell4.innerHTML = i.datec ;
+                cell5.innerHTML = i.heure
 
 
 
 
-if (i.etat == "enattend"){
-  cell5.innerHTML = "<button style='background-color : orange;'> A </button>"
-}
-if (i.etat == "accepter"){
-  cell5.innerHTML = "<button style='background-color : green'> A </button>"
-}
-
-if (i.etat == "refuser"){
-  cell5.innerHTML = "<button style='background-color : red'> R </button>"
-}
-
-    cell6.innerHTML = "<button class='btn btn-success'> <a href=accepter1.html?id="+i._id+" style='color:white'> A </a> </button> <button class='btn btn-danger'> <a href=refuser1.html?id="+i._id+" style='color:white'> R </a> </button>";
+    cell6.innerHTML = "<div class='d-flex justify-content-between' ><button class='btn btn-danger'> <a href=supprimervoyage.html?id="+i._id+" style='color:white'> Delete </a> </button>";
     j = j + 1 ;
      
     }
