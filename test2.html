@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello world</h1>
+    <script>
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var c = url.searchParams.get("id");
+
+      var url = "http://127.0.0.1:3000/ratings";
+      console.log("check");
+      fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var total = 0;
+          var nbrating = 0;
+          console.log(data);
+          data.forEach((el) => {
+            if (el.conducteurId == c) {
+              console.log(el);
+              total = total + el.rating;
+              nbrating = nbrating + 1;
+            }
+          });
+
+          var average = total / nbrating;
+          console.log(average);
+        })
+        .catch(function () {
+          console.log("Booo");
+        });
+    </script>
+  </body>
+</html>

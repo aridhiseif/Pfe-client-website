@@ -69,16 +69,16 @@
               <a href="pricing.html" class="nav-link">Covoiturage</a>
             </li>
             <li class="nav-item">
-              <a href="car.html" class="nav-link">Location</a>
+              <a href="conducteurList.html" class="nav-link"
+                >list des conducteurs</a
+              >
             </li>
-            <li class="nav-item">
-              <a href="blog.html" class="nav-link">Blog</a>
-            </li>
+
             <li class="nav-item">
               <a href="contact.html" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
-              <a id="ll" href="login.html" class="nav-link">Login</a>
+              <a id="ll" href="profile.html" class="nav-link">profile</a>
             </li>
           </ul>
         </div>
@@ -190,7 +190,7 @@
                <div class="row mb-5">
                 <div class="border w-auto p-4 rounded mb-2 d-flex">
                   <p>average rating:</p>
-                  <div style="display: flex; margin-left:5px;width: 30px;height: 30px;justify-content: center;align-items: center;" class="border rounded"><p>5</p></div>
+                  <div id="avrRating" style="display: flex; margin-left:5px;width: 30px;height: 30px;justify-content: center;align-items: center;" class="border rounded"><p>N/A</p></div>
                 </div>
                </div>
                <!--cards ends-->
@@ -454,6 +454,44 @@
 
 
    </script>
+
+<!-- calculating average rating-->
+
+<script>
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("id");
+
+  var url = "http://127.0.0.1:3000/ratings";
+  console.log("check");
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var total = 0;
+      var nbrating = 0;
+      console.log(data);
+      data.forEach((el) => {
+        if (el.conducteurId == c) {
+          console.log(el);
+          total = total + el.rating;
+          nbrating = nbrating + 1;
+        }
+      });
+
+      var average = total / nbrating;
+      console.log(average);
+      var pAvRating = document.getElementById("avrRating");
+      pAvRating.innerHTML = average;
+    })
+    .catch(function () {
+      console.log("Booo");
+    });
+</script>
+
+<!--end average rating-->
+
 
     <script type="text/javascript">
       var ll = document.getElementById("ll");
