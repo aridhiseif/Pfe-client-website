@@ -102,34 +102,91 @@
                 ><a href="index.html"
                   >Home <i class="ion-ios-arrow-forward"></i></a
               ></span>
-              <span>Pricing <i class="ion-ios-arrow-forward"></i></span>
+              <span>Contact <i class="ion-ios-arrow-forward"></i></span>
             </p>
-            <h1 class="mb-3 bread">Pricing</h1>
+            <h1 class="mb-3 bread">Contact Us</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ftco-section ftco-cart">
+    <section class="ftco-section contact-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12 ftco-animate">
-            <div class="car-list">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nom</th>
-                      <th scope="col">Prenom</th>
-                      <th scope="col">Rating</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody id="coTable"></tbody>
-                </table>
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-4">
+            <div class="row mb-5">
+              <!---->
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-map-o"></span>
+                  </div>
+                  <p>
+                    <span>Address:</span> 198 West 21th Street, Suite 721 New
+                    York NY 10016
+                  </p>
+                </div>
               </div>
+
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-mobile-phone"></span>
+                  </div>
+                  <p>
+                    <span>Phone:</span>
+                    <a href="tel://1234567920">+ 1235 2355 98</a>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-envelope-o"></span>
+                  </div>
+                  <p>
+                    <span>Email:</span>
+                    <a href="mailto:info@yoursite.com">info@yoursite.com</a>
+                  </p>
+                </div>
+              </div>
+              <!---->
             </div>
+          </div>
+          <div class="col-md-8 block-9 mb-md-5">
+            <form onsubmit="return false;" class="bg-light p-5 contact-form">
+              <div class="form-group">
+                <input
+                  id="sujet"
+                  type="text"
+                  class="form-control"
+                  placeholder="Subject"
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name=""
+                  id="msg"
+                  cols="30"
+                  rows="7"
+                  class="form-control"
+                  placeholder="Message"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input
+                  onclick="send();"
+                  type="button"
+                  value="Send Message"
+                  class="btn btn-primary py-3 px-5"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div id="map" class="bg-white"></div>
           </div>
         </div>
       </div>
@@ -285,42 +342,53 @@
     <script src="js/main.js"></script>
 
     <script>
-      console.log("conducteurs:");
-      var url = "http://127.0.0.1:3000/conducteurs";
-      console.log("check");
-      fetch(url)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-          var table = document.getElementById("coTable");
-          var j = 1;
-          data.forEach((el) => {
-            var row = table.insertRow(-1);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
+      function send() {
+        // Post a user
+        var url = "http://127.0.0.1:3000/rapports";
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
 
-            cell1.innerHTML = j;
-            cell2.innerHTML = el.firstname;
-            cell3.innerHTML = el.lastname;
-            cell4.innerHTML = el.tel;
-            cell5.innerHTML =
-              "<div class='d-flex justify-content-around'><button class='btn btn-success'><a style='color:white' href=conducteurView.html?id=" +
-              el._id +
-              ">Profile</a></button><button class='btn btn-warning'><a style='color:white' href=rapport.html?id=" +
-              el._id +
-              ">Rapport</a></button></div>";
+        var data = {};
+        //data.name = document.getElementById("name").value;
+        data.userId = localStorage.getItem("idclient");
+        data.conducteurId = urlParams.get("id");
+        data.email = localStorage.getItem("email");
+        data.sujet = document.getElementById("sujet").value;
+        data.rapport = document.getElementById("msg").value;
 
-            j = j + 1;
-          });
-        })
-        .catch(function () {
-          console.log("Booo");
-        });
+        var json = JSON.stringify(data);
+        console.log(json);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.onload = function () {
+          var users = JSON.parse(xhr.responseText);
+          if (xhr.readyState == 4 && xhr.status == "200") {
+            alert("Rapport Ajouter, merci pour votre contact");
+            location.replace("conducteurList.html");
+          } else {
+            alert(users.message);
+          }
+        };
+        xhr.send(json);
+      }
+    </script>
+
+    <script type="text/javascript">
+      var ll = document.getElementById("ll");
+      if (localStorage.getItem("idclient") != null) {
+        ll.href = "profile.html";
+        ll.innerHTML = "profile";
+      }
+    </script>
+
+    <script type="text/javascript">
+      var ll = document.getElementById("ll");
+      if (localStorage.getItem("idrental") != null) {
+        ll.href = "profilerental.html";
+        ll.innerHTML = "profile";
+      }
     </script>
   </body>
 </html>
