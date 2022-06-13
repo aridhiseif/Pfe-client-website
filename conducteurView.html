@@ -165,9 +165,9 @@
                     <span class="icon-envelope-o"></span>
                     <p id="rating">
                   </div>
-                  <div class="d-flex flex-row flex-grow-1">
+                  <div class="d-flex flex-column flex-grow-1 ">
                     <div class="d-flex flex-row flex-grow-1 align-items-center">
-                        <span>évaluation:</span>
+                        <P>évaluation:</P>
                         <select id="ratingValue" class="form-control mx-1">
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -180,10 +180,9 @@
                         <button id="myBtn" onclick="submitRating()" class="btn btn-primary mx-1">soumettre</button>
                       </div>
                       </p>
-                    
+                    <span style="font-size: 10;">évaluer par <span id="ratingCount">0</span> Clients </span>
                   </div>
                 </div>
-              
               </div>
               <!--cards ends-->
                <!--cards start-->
@@ -480,10 +479,19 @@
         }
       });
 
+      
+      var ratingCount = document.getElementById("ratingCount");
+      ratingCount.innerHTML = nbrating;
+
       var average = total / nbrating;
       console.log(average);
-      var pAvRating = document.getElementById("avrRating");
-      pAvRating.innerHTML = average;
+      if(nbrating == 0){
+        var pAvRating = document.getElementById("avrRating");
+      pAvRating.innerHTML = "N/A";
+      }else{
+        var pAvRating = document.getElementById("avrRating");
+        pAvRating.innerHTML = average;
+      }
     })
     .catch(function () {
       console.log("Booo");

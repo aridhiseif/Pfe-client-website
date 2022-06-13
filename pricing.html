@@ -253,8 +253,7 @@
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
+
     <script src="js/main.js"></script>
 
     <script type="text/javascript">
@@ -288,8 +287,8 @@
             `${i.marque} - ` +
             i.nom +
             `</h3>
-                        <p class="mb-0 rated">
-
+                        <p id="cond" class="mb-0 rated">
+                          <a href=conducteurView.html?id=${i.conducteurId} >voir le profile de conducteur</a>
                         </p>
                       </td>
 
@@ -343,7 +342,7 @@
                             <span class="num"><small class="currency"></small> ` +
             i.prixvoyage +
             `</span>
-                            <span class="per">/per place</span>
+                            <span class="per">/par place</span>
                           </h3>
 
                         </div>
@@ -373,7 +372,7 @@
       // Send request
       request.send();
     </script>
-
+    <!-- Get voyages-->
     <script type="text/javascript">
       function book(id, id2) {
         var url = "http://127.0.0.1:3000/covs";
@@ -405,6 +404,22 @@
         };
         xhr.send(json);
       }
+    </script>
+
+    <!-- get Conducteurs-->
+    <script>
+      var url = "http://127.0.0.1:3000/ratings";
+      console.log("check");
+      fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch(function () {
+          console.log("Booo");
+        });
     </script>
 
     <script type="text/javascript">
