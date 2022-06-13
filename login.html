@@ -321,14 +321,14 @@
                 localStorage.setItem("lastname", clients[i].lastname);
 
                 access = true;
-                location.replace("index.html");
+                location.replace("profile.html");
               }
             }
           }
         };
         xhr1.send();
         if (access) {
-          location.replace("index.html");
+          location.replace("profile.html");
         }
       }
 
@@ -358,14 +358,14 @@
                 localStorage.setItem("lastname", conducteurs[i].lastname);
 
                 access = true;
-                location.replace("indexrental.html");
+                location.replace("profilerental.html");
               }
             }
           }
         };
         xhr1.send();
         if (access) {
-          location.replace("index.html");
+          location.replace("profilerental.html");
         } else {
           alert("invalid login or password !");
         }
