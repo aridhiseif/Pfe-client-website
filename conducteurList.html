@@ -119,7 +119,7 @@
                       <th scope="col">#</th>
                       <th scope="col">Nom</th>
                       <th scope="col">Prenom</th>
-                      <th scope="col">Rating</th>
+                      <th scope="col">télephone</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -281,11 +281,11 @@
             cell3.innerHTML = el.lastname;
             cell4.innerHTML = el.tel;
             cell5.innerHTML =
-              "<div class='d-flex justify-content-around'><button class='btn btn-success'><a style='color:white' href=conducteurView.html?id=" +
+              "<div class='d-flex justify-content-around'><a style='color:white' href=conducteurView.html?id=" +
               el._id +
-              ">Profile</a></button><button class='btn btn-warning'><a style='color:white' href=rapport.html?id=" +
+              "><button class='btn btn-success'>Profile</button></a><a style='color:white' href=rapport.html?id=" +
               el._id +
-              ">Rapport</a></button></div>";
+              "><button class='btn btn-warning'>Rapport</button></a></div>";
 
             j = j + 1;
           });

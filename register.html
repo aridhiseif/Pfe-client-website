@@ -107,7 +107,7 @@
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
           <div class="col-md-12 block-12 mb-md-5">
-            <form onsubmit="return false;" class="bg-light p-5 contact-form">
+            <form class="bg-light p-5 contact-form">
               <div class="form-group">
                 <input
                   id="firstname"
@@ -130,6 +130,8 @@
                 <input
                   id="email"
                   type="email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   class="form-control"
                   placeholder="Email"
                 />
@@ -159,7 +161,7 @@
                 <div class="form-group">
                   <input
                     onclick="register();"
-                    type="button"
+                    type="submit"
                     value="Register"
                     class="btn btn-primary py-3 px-5"
                   />
