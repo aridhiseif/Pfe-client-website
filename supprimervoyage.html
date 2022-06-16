@@ -13,6 +13,7 @@
         var url_string = window.location.href;
         var url = new URL(url_string);
         var c = url.searchParams.get("id");
+        var conducteurId = url.searchParams.get("conducteurId");
         console.log(c);
         // Post a user
         var url3 = "http://127.0.0.1:3000/voyages/" + c;
@@ -20,7 +21,7 @@
         xhr3.open("DELETE", url3, true);
         xhr3.onload = function () {
           if (xhr3.readyState == 4 && xhr3.status == "200") {
-            location.replace("supprimerLesréservation.html?id=" + c);
+            location.replace("supprimerLesréservation.html?id=" + conducteurId);
             event.preventDefault();
           } else {
             console.log("error");
