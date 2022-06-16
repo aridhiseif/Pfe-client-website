@@ -60,9 +60,6 @@
               <a href="about.html" class="nav-link">à propos</a>
             </li>
             <li class="nav-item">
-              <a href="contact3.html" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
               <a href="services.html" class="nav-link">Services</a>
             </li>
             <li class="nav-item">
@@ -102,32 +99,86 @@
                 ><a href="index.html"
                   >Home <i class="ion-ios-arrow-forward"></i></a
               ></span>
-              <span>Covoiturage <i class="ion-ios-arrow-forward"></i></span>
+              <span>Contact <i class="ion-ios-arrow-forward"></i></span>
             </p>
-            <h1 class="mb-3 bread">Covoiturage</h1>
+            <h1 class="mb-3 bread">Contact</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ftco-section ftco-cart">
+    <section class="ftco-section contact-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12 ftco-animate">
-            <div class="car-list">
-              <table class="table">
-                <thead class="thead-primary">
-                  <tr class="text-center">
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                    <th class="bg-primary heading">Nb de place</th>
-                    <th class="bg-dark heading">Date/Time</th>
-                    <th class="bg-black heading">Reserver</th>
-                  </tr>
-                </thead>
-                <tbody id="listcar"></tbody>
-              </table>
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-4">
+            <div class="row mb-5">
+              <!---->
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-map-o"></span>
+                  </div>
+                  <p>
+                    <span>Address:</span> 198 West 21th Street, Suite 721 New
+                    York NY 10016
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-mobile-phone"></span>
+                  </div>
+                  <p>
+                    <span>téléphone:</span>
+                    + 126 52 355 998
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="border w-100 p-4 rounded mb-2 d-flex">
+                  <div class="icon mr-3">
+                    <span class="icon-envelope-o"></span>
+                  </div>
+                  <p>
+                    <span>Email:</span>
+                    aridhiseif@gmail.com
+                  </p>
+                </div>
+              </div>
+              <!---->
             </div>
+          </div>
+          <div class="col-md-8 block-9 mb-md-5">
+            <form onsubmit="return false;" class="bg-light p-5 contact-form">
+              <div class="form-group">
+                <input
+                  id="sujet"
+                  type="text"
+                  class="form-control"
+                  placeholder="Subject"
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name=""
+                  id="msg"
+                  cols="30"
+                  rows="7"
+                  class="form-control"
+                  placeholder="Message"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input
+                  onclick="send();"
+                  type="button"
+                  value="Send Message"
+                  class="btn btn-primary py-3 px-5"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -253,139 +304,25 @@
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
 
-    <script type="text/javascript">
-      // Create a request variable and assign a new XMLHttpRequest object to it.
-      var request = new XMLHttpRequest();
-
-      // Open a new connection, using the GET request on the URL endpoint
-      request.open("GET", "http://127.0.0.1:3000/voyages", true);
-
-      request.onload = function () {
-        // Begin accessing JSON data here
-
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
-        //var list = document.getElementById('listpatient');
-        var table = document.getElementById("listcar");
-
-        console.log(data);
-        var j = 1;
-        data.forEach((i) => {
-          ch =
-            `
-
-
-
-
-                    <tr class="">
-                      <td class="">    </td>
-                      <td class="product-name">
-                        <h3>` +
-            `${i.marque} - ` +
-            i.nom +
-            `</h3>
-                        <p id="cond" class="mb-0 rated">
-                          <a href=conducteurView.html?id=${i.conducteurId} >voir le profile de conducteur</a>
-                        </p>
-                      </td>
-
-                      <td class=>
-
-                        <div class="price-rate">
-                          <h3>
-                            <span class="num"><small class="currency"></small> nb place : ` +
-            i.nbdeplace +
-            `
-                 </span>
-                            <span class="per"></span>
-                          </h3>
-                          <span class="subheading"> bagage : ` +
-            i.bags +
-            `  -  options : ` +
-            i.features +
-            `</span>
-                        </div>
-                      </td>
-
-                      <td >
-
-                        <div class="price-rate">
-                          <h3>
-                            <span class="num"><small class="currency"></small>` +
-            i.depart +
-            `</span>
-                            <span class="per">/` +
-            i.fin +
-            `</span>
-                          </h3>
-                          <span class="subheading">` +
-            i.datec +
-            `</span>
-            <span class="subheading">` +
-            i.heure +
-            `</span>
-            
-                        </div>
-                      </td>
-
-                      <td class="price">
-                        <p class="btn-custom"><a onclick="book('` +
-            i._id +
-            ` ','` +
-            i.conducteurId +
-            `');">Reserver</a></p>
-                        <div class="price-rate">
-                          <h3>
-                            <span class="num"><small class="currency"></small> ` +
-            i.prixvoyage +
-            `</span>
-                            <span class="per">/par place</span>
-                          </h3>
-
-                        </div>
-                      </td>
-                    </tr><!-- END TR-->
-
-
-              `;
-          table.insertAdjacentHTML("beforeend", ch);
-
-          /*
-
-
-      cell4.innerHTML = i.datedepart;
-      cell5.innerHTML = i.datefin ;
-          cell6.innerHTML = i.prix ;
-              cell7.innerHTML = i.direction ;
-                  cell8.innerHTML = i.planing ;
-                    cell9.innerHTML = i.agence ;
-      cell10.innerHTML = "<button class='btn btn-danger'> <a href=supprimeroffre.html?id="+i._id+" style='color:white'> Detele </a> </button>";
-      j = j + 1 ;
-
-      */
-        });
-      };
-
-      // Send request
-      request.send();
-    </script>
-    <!-- Get voyages-->
-    <script type="text/javascript">
-      function book(id, id2) {
-        var url = "http://127.0.0.1:3000/covs";
+    <script>
+      function send() {
+        // Post a user
+        var url = "http://127.0.0.1:3000/contacts";
 
         var data = {};
-
-        data.firstname = localStorage.getItem("firstname");
-        data.lastname = localStorage.getItem("lastname");
+        //data.name = document.getElementById("name").value;
+        if (localStorage.getItem("idclient")) {
+          data.userId = localStorage.getItem("idclient");
+        } else {
+          data.userId = localStorage.getItem("idrental");
+        }
         data.email = localStorage.getItem("email");
-        data.clientId = localStorage.getItem("idclient");
-        data.voyageId = id.trim();
-        data.conducteurId = id2;
-        data.etat = "enattend";
+        data.sujet = document.getElementById("sujet").value;
+        data.msg = document.getElementById("msg").value;
 
         var json = JSON.stringify(data);
         console.log(json);
@@ -396,30 +333,14 @@
         xhr.onload = function () {
           var users = JSON.parse(xhr.responseText);
           if (xhr.readyState == 4 && xhr.status == "200") {
-            alert("Reservation Valider!");
-            location.replace("profile.html");
+            alert("Reclamation Ajouter, merci pour votre contact");
+            location.replace("index.html");
           } else {
-            console.log(users);
+            alert(users.message);
           }
         };
         xhr.send(json);
       }
-    </script>
-
-    <!-- get Conducteurs-->
-    <script>
-      var url = "http://127.0.0.1:3000/ratings";
-      console.log("check");
-      fetch(url)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-        })
-        .catch(function () {
-          console.log("Booo");
-        });
     </script>
 
     <script type="text/javascript">

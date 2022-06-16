@@ -396,6 +396,7 @@
 
   var url = "http://127.0.0.1:3000/ratings";
       console.log("check");
+      // fetch = xhr.open & xhr.onload
       fetch(url)
         .then(function (response) {
           return response.json();
@@ -479,10 +480,11 @@
         }
       });
 
-      
+      // set the number of clients how rated this conducteur
       var ratingCount = document.getElementById("ratingCount");
       ratingCount.innerHTML = nbrating;
 
+      // calculate the average rating for this conducteur
       var average = total / nbrating;
       console.log(average);
       if(nbrating == 0){
