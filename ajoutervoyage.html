@@ -404,7 +404,7 @@ client.picker().open();
         xhr.onload = function () {
           var users = JSON.parse(xhr.responseText);
           if (xhr.readyState == 4 && xhr.status == "200") {
-            alert("Voiture Ajouter !");
+            alert("voyage Ajouter !");
             location.replace("profilerental.html");
           } else {
             alert(users.message);
