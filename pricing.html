@@ -2,6 +2,7 @@
   if (!localStorage.getItem("idrental") && !localStorage.getItem("idclient"))
     location.replace("login.html");
 </script>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -256,6 +257,30 @@
 
     <script src="js/main.js"></script>
 
+    <!-- save the IDs of the voyages that the clients booked in localStorage-->
+    <script>
+      var url = "http://127.0.0.1:3000/covs";
+      console.log("check");
+      fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          var j = 0;
+          data.forEach((el) => {
+            if (el.clientId == localStorage.getItem("idclient")) {
+              localStorage.setItem(`${j}`, el.voyageId);
+              j = j + 1;
+            }
+          });
+          localStorage.setItem("jcount", j);
+        })
+        .catch(function () {
+          console.log("Booo");
+        });
+    </script>
+
     <script type="text/javascript">
       // Create a request variable and assign a new XMLHttpRequest object to it.
       var request = new XMLHttpRequest();
@@ -273,7 +298,13 @@
 
         console.log(data);
         var j = 1;
+        console.log(`jcount : ${localStorage.getItem("jcount")}`);
         data.forEach((i) => {
+          // change pagage to non to avoid
+          if (i.bags == "pagage") {
+            i.bags = "non";
+          }
+          var booked = false;
           ch =
             `
 
@@ -351,7 +382,21 @@
 
 
               `;
-          table.insertAdjacentHTML("beforeend", ch);
+
+          //        check if this voyage is booked by this client before
+          for (var k = 0; k < parseInt(localStorage.getItem("jcount")); k++) {
+            console.log(
+              `voyageid on local n:${k} = ${localStorage.getItem(k)} `
+            );
+
+            if (localStorage.getItem(`${k}`) == i._id) {
+              console.log(`booked is true`);
+              booked = true;
+            }
+          }
+          if (!booked) {
+            table.insertAdjacentHTML("beforeend", ch);
+          }
 
           /*
 
